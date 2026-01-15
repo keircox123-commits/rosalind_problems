@@ -1,5 +1,5 @@
 from structures import *
-
+import string
 
 def validate_seq(seq:str) -> bool:
     """ Validate the input sequence uses the correct nucleotides 'ACGT'.
@@ -11,7 +11,7 @@ def validate_seq(seq:str) -> bool:
         bool: Returns True if seq is valid.
     """
 
-    seq = seq.upper
+    seq = seq.upper()
     is_valid = all(nuc in DNA_nucleotides for nuc in seq)
     return is_valid
 
@@ -39,3 +39,16 @@ def dna_rna_convert(seq:str) -> str:
         str: an RNA string copy of the input DNA sequence.
     """
     return seq.replace('T','U')
+
+def reverse_compliment(seq:str) -> str:
+    """ Returns the reverse compliments of the 5'-3' DNA string.
+
+    Args:
+        seq (str): DNA sequence.
+    
+    Returns:
+        str: reverse compliment of the DNA string
+    
+    """
+    return seq.translate(str.maketrans('ACGT','TGCA'))[::-1]
+    

@@ -1,16 +1,41 @@
 from structures import *
 
 
-def validate_seq(seq):
+def validate_seq(seq:str) -> bool:
+    """ Validate the input sequence uses the correct nucleotides 'ACGT'.
+
+    Args:
+        seq (str): DNA sequence to validate.
+    
+    Returns:
+        bool: Returns True if seq is valid.
+    """
+
     seq = seq.upper
     is_valid = all(nuc in DNA_nucleotides for nuc in seq)
-    return seq if is_valid else False
+    return is_valid
 
 
-def count_nucleotides(seq):
+def count_nucleotides(seq:str) -> dict:
+    """ Creates a dictionary with a count of each nucleotide.
+
+    Args:
+        seq (str): DNA sequence to count.
+    
+    Returns:
+        dict: ditionary where each key is a nucleotide and the value is a count of occurance.
+    """
     seq = seq.upper()
     return {base: seq.count(base) for base in DNA_nucleotides}
 
 
-def transcribe(seq):
+def dna_rna_convert(seq:str) -> str:
+    """ Convert a DNA string to an RNA string (not compliment).
+
+    Args:
+        seq (str): DNA sequence to convert
+    
+    Returns:
+        str: an RNA string copy of the input DNA sequence.
+    """
     return seq.replace('T','U')

@@ -87,5 +87,22 @@ def fasta_reader(file:str) -> dict:
             dict[gene] += line
     return dict
 
+def gc_content(fasta: dict) -> dict:
+    """ From a dict of fastas returns a dict of gc content 
+    Args:
+        fastas (dict): dict of fasta sequences
+    Returns:
+        dict: gc content of each fasta
+    
+    """
+    gc = {}
+    for key, value in fasta.items():
+        a = value.count('G') + value.count('C')
+        gc[key] = (a/len(value)*100)
+    return gc
+        
+
+        
+
             
                 

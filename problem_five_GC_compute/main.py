@@ -7,17 +7,15 @@ from structures import *
 
 def main():
 
-    path = '/Users/keircox/Downloads/rosalind_gc-2.txt'
+    path = '/Users/keircox/Downloads/rosalind_gc-3.txt'
 
     genes = fasta_reader(path)
-    gc = {}
-
-    for key,value in genes.items():
-        gc[key] = value.count('G') + value.count('C')
-
+    
+    gc = gc_content(genes)
     max_key = max(gc,key=gc.get)
 
     print(f'{max_key} {gc[max_key]}')
+    
 
 if __name__ == '__main__':
     main()

@@ -66,4 +66,26 @@ def recurrance(n:int,k:int)->int:
     for itr in range(n-1):
         child, parent = parent,parent + (child* k)
     return child
+
+
+def fasta_reader(file:str) -> dict:
+    """For a list of fastas, returns a dictionary with the key as the name and seq as value.
+
+    Args:
+        file (str): file path
     
+    Returns:
+        dict: fastas split into seqs
+    """
+    dict,gene = {},None
+    for line in open(file):
+        line = line.strip()
+        if line.startswith('>'):
+            gene = line[1:]
+            dict[gene] = ''
+        else: 
+            dict[gene] += line
+    return dict
+
+            
+                

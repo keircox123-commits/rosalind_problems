@@ -51,4 +51,19 @@ def reverse_compliment(seq:str) -> str:
     
     """
     return seq.translate(str.maketrans('ACGT','TGCA'))[::-1]
+
+def recurrance(n:int,k:int)->int:
+    """This function computes the n-th term of a generalized Fibonacci sequence.
+
+    Args:
+        n (int): nth term
+        k (int): size of litter
+    
+    Returns:
+        int: number of rabbit pairs
+    """
+    parent,child = 1, 1
+    for itr in range(n-1):
+        child, parent = parent,parent + (child* k)
+    return child
     

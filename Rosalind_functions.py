@@ -101,6 +101,19 @@ def gc_content(fasta: dict) -> dict:
         gc[key] = (a/len(value)*100)
     return gc
         
+def hamming (seq1:str,seq2:str) -> int:
+    """Compares two DNA strings to compare number of point mutations (hamming dist)
+    Args:
+        seq1 (str): first DNA string
+        seq2 (str): second DNA string
+    Returns
+        int: number of point mutations
+    """
+    output = 0
+    for x,y in seq1,seq2:
+        if x !=y:
+            output += 1
+    return output
 
         
 

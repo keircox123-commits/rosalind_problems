@@ -110,8 +110,8 @@ def hamming (seq1:str,seq2:str) -> int:
         int: number of point mutations
     """
     output = 0
-    for x,y in seq1,seq2:
-        if x !=y:
+    for x,y in zip(seq1,seq2):
+        if x != y:
             output += 1
     return output
 

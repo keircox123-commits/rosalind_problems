@@ -131,6 +131,14 @@ def rna_to_protein(rna:str) -> str:
         protein += amino_acid
         
     return protein
+
+def motif_finding(seq,motif):
+    output = []
+    motif_len = len(motif)
+    for i in range(len(seq)-len(motif)+1 ):
+        if seq[i:i+motif_len] ==motif:
+            output.append(i+1)
+    return output
         
 
             

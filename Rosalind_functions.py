@@ -146,6 +146,43 @@ def motif_finding(seq:str,motif:str)-> list:
         if seq[i:i+motif_len] ==motif:
             output.append(i+1)
     return output
+
+def consensus_and_profile(sequences_dict:dict):
+    """
+    Given a dictionary of DNA sequences, returns the consensus string
+    and a profile matrix.
+    
+    Args:
+        sequences_dict: Dictionary of sequences (values), keys are sequence IDs.
+        
+    Returns:
+        consensus (str): The consensus DNA string.
+        profile (dict): Dictionary with keys 'A', 'C', 'G', 'T', each mapping to a list of counts per position.
+    """
+    # Get the list of sequences
+    sequences = list(sequences_dict.values())
+    length = len(sequences[0])
+
+    # Initialize profile dictionary
+    profile = {
+        'A': [0] * length,
+        'C': [0] * length,
+        'G': [0] * length,
+        'T': [0] * length
+    }
+
+    # Fill in the profile
+    for seq in sequences:
+        for i, base in enumerate(seq):
+            profile[base][i] += 1
+
+    # Build consensus string
+    consensus = ''
+    for i in range(length):
+        max_base = max(profile, key=lambda b: profile[b][i])
+        consensus += max_base
+
+    return consensus, profile
         
 
             

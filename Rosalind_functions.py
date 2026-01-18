@@ -132,7 +132,14 @@ def rna_to_protein(rna:str) -> str:
         
     return protein
 
-def motif_finding(seq,motif):
+def motif_finding(seq:str,motif:str)-> list:
+    """finds all instances of the motif within the seq
+    Args:
+        seq (str): DNA string
+        motif (str): DNA motif
+    Returns:
+        list: list of indexes where motif is found in seq"""
+
     output = []
     motif_len = len(motif)
     for i in range(len(seq)-len(motif)+1 ):

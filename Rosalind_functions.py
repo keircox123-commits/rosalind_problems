@@ -115,6 +115,22 @@ def hamming (seq1:str,seq2:str) -> int:
             output += 1
     return output
 
+def rna_to_protein(rna:str) -> str:
+    """convert rnaseq to protein
+    Args:
+        rna (str): RNA string
+    Returns:
+        str: protein string
+    """
+    protein = ''
+    for i in range(0, len(rna) - 2, 3):
+        codon = rna[i:i+3]
+        amino_acid = rna_codon_table.get(codon, '')
+        if amino_acid == '*':
+            break
+        protein += amino_acid
+        
+    return protein
         
 
             

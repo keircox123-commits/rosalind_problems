@@ -206,7 +206,12 @@ def mortal_fibonacci_rabbits(n:int, m:int) -> int:
         
 
 def overlap_graph (seqs:dict,length:int) -> list:
-    """ for a dict of seqs and overlap length, prints an overlap graph"""
+    """ for a dict of seqs and overlap length, prints an overlap graph and stores in list
+    Args:
+        seqs (dict): dictionary of sequences
+        length (int): length of overlap
+    Returns:
+        list: list of overlap graph"""
     seq_start = collections.defaultdict(list)
     seq_end = collections.defaultdict(list)
     output = []
@@ -214,11 +219,16 @@ def overlap_graph (seqs:dict,length:int) -> list:
         seq = str(value)
         seq_start[seq[:length]].append(key)
         seq_end[seq[-length:]].append(key)
-        for key,start_id in seq_start:
-            if key in seq_end:
-                end_id = seq_end[key]
-                output.append((i,j) for i in start_id for j in end_id if i !=j)
-                [print(i,j) for i in start_id for j in end_id if i !=j]
+    for key,start_id in seq_start.items():
+        if key in seq_end:
+            end_id = seq_end[key]
+            for j in end_id:
+                for i in start_id:
+                    if i != j:
+                        pair = [j,i]
+                        output.append(pair)
+                        print(pair)
+            
 
     return output
 

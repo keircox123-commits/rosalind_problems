@@ -1,5 +1,6 @@
 from structures import *
 import string
+import collections
 
 def validate_seq(seq:str) -> bool:
     """ Validate the input sequence uses the correct nucleotides 'ACGT'.
@@ -204,5 +205,23 @@ def mortal_fibonacci_rabbits(n:int, m:int) -> int:
     return sum(ages)
         
 
-            
+def overlap_graph (seqs:dict,length:int) -> list:
+    """ for a dict of seqs and overlap length, prints an overlap graph"""
+    seq_start = collections.defaultdict(list)
+    seq_end = collections.defaultdict(list)
+    output = []
+    for key,value in seqs.items():
+        seq = str(value)
+        seq_start[seq[:length]].append(key)
+        seq_end[seq[-length:]].append(key)
+        for key,start_id in seq_start:
+            if key in seq_end:
+                end_id = seq_end[key]
+                output.append((i,j) for i in start_id for j in end_id if i !=j)
+                [print(i,j) for i in start_id for j in end_id if i !=j]
+
+    return output
+
+
+   
                 

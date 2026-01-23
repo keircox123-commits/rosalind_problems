@@ -232,6 +232,25 @@ def overlap_graph (seqs:dict,length:int) -> list:
 
     return output
 
+def expected_off(lst):
+    """
+    Provides expected g1 offspring based on number of couples given as a list of genotypes (lst)
+
+    Parameters
+    ----------
+    lst (list): list of number of couples displaying each phenotype 
+
+    Returns
+    -------
+    offspring (int): probability of offspring displaying dominant phenotype
+
+    """
+    offspring = 0
+    probs = [1, 1, 1, 0.75, 0.5, 0]  # Probability of dominant phenotype
+    for i, num in enumerate(lst):
+        offspring += num * 2 * probs[i]
+    return offspring
+
 
    
                 

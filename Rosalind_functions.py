@@ -183,6 +183,25 @@ def consensus_and_profile(sequences_dict:dict):
         consensus += max_base
 
     return consensus, profile
+
+def mortal_fibonacci_rabbits(n:int, m:int) -> int:
+    """Solve the mortal rabbits problem on rosalind 
+    Args:
+    n int: number of months
+    m int: lifespan of rabbits (in months)
+    
+    Returns:
+        int : number of rabbit pairs"""
+    
+    ages = [0] * m
+    ages[0] = 1  
+
+    for month in range(1, n):
+        new_borns = sum(ages[1:])
+        # Shift ages: oldest rabbits die, others age by 1 month
+        ages = [new_borns] + ages[:-1]
+    
+    return sum(ages)
         
 
             

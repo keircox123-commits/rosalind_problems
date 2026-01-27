@@ -251,6 +251,21 @@ def expected_off(lst):
         offspring += num * 2 * probs[i]
     return offspring
 
+def shared_motif(fastas:dict) -> str:
+    """ Returns the longest common motif between all sequences"""
+    seqs = list(fastas.values())
+    
+    # Start with the shortest sequence
+    shortest_seq = min(seqs, key=len)
+    max_len = len(shortest_seq)
+    
+    # Check all substrings of the shortest sequence
+    for length in range(max_len, 0, -1):  # Start from the longest
+        for start in range(max_len - length + 1):
+            motif = shortest_seq[start:start+length]
+            if all(motif in seq for seq in seqs):
+                return motif
+
 
    
                 

@@ -266,6 +266,18 @@ def shared_motif(fastas:dict) -> str:
             if all(motif in seq for seq in seqs):
                 return motif
 
+def enumerate_k_mers(str:str,k:int)-> str:
+    """from a str of letters, return all combinations of length k"""
+
+    string = str.replace(' ','')
+    output = []
+    for index,i in enumerate(string):
+        for n in range(index,len(string)+1):
+            
+        
+
+
+
 
    
                 
